@@ -1,11 +1,28 @@
 # MEDHEROES #
-We were the MedHeroes team. The members were mkimurat (Minna Kimura-Thollander), Catherine Li (cli75), and Shani Abass
-(sabass).
+MedHeroes is a web app that helps motiate young children to take their long-term prescribed medication. Our team of three worked alongside our client, Dr. Nick Grumbach (Pediatrician), to refine the product idea and actualize it through development.
 
-## Roles ##
-mkimurat (full-stack) - Front-end prototype, back-end, and designing avatars. <br></br>
-cli75 (front-end) - Front-end styling. <br></br>
-sabass (designer) - Designing rewards.
+## Team ##
+Catherine Li (Product Designer & Front-End Developer)
+- User research, product scoping, client meetings
+- Wireframes, hi-fi iterations through Adobe XD
+- Front-end implementation through React
+- Cloud deployment through AWS (now discontinued due to cost), database set-up through MongoDB 
+
+Minna Kimura-Thollander (Full-Stack Developer)
+- User research, product scoping, client meetings
+- Wireframe implementation
+- Back-end functionality
+- Animal avatar illustrations
+
+Shani Abass (Illustrator)
+- User research, client meetings
+- Reward illustrations
+
+## Stack ##
+- Front-end: React
+- Back-end: Node/Express server
+- Database: MongoDB
+- Hosting: AWS (now discontinued due to cost)
 
 ## Resources ##
 We used the following resource to help us set up back-end signup, login verification, and logout. We do not claim the
@@ -27,15 +44,6 @@ Reward images and medicine pill image belong to sabass.
 The colors appear much more opaque or faded on the department machine due to their color settings and different screen type. However, they are much more saturated on phone screens (intended use environment) and laptops.
 
 ## Documentation for our Client ##
-### Database ###
-If you would like to access our mongoDB account, the credentials are:
-
-username: cath@brown.edu 
-password: webapps0!
-
-Alternatively you may set up your own mongoDB account (for free) and replace this url in the server:
-const url = "mongodb+srv://webapps:ABC123@cluster0-jqqcm.mongodb.net/test?retryWrites=true";
-with the url of your cluster.
 
 ### File comments ###
 Here are comments on what each file in react_app generally handles:
