@@ -1,4 +1,4 @@
-# MEDHEROES #
+# MedHeroes #
 MedHeroes is a mobile platform that helps motiate young children to take their long-term prescribed medication. Our team of three worked alongside our client, Dr. Nick Grumbach (Pediatrician), to refine the product idea and actualize it through development.
 
 ## Team ##
@@ -25,19 +25,16 @@ Shani Abass (Illustrator)
 - Hosting: AWS (now discontinued due to cost)
 
 ## Product ##
-MedHeroes motivates young children from ages 6-16 to take their long-term prescriptions on schedule. Parents and children are able to create custom rewards together, encouraging children to take medication on schedule for a set number of days to obtain a reward. Parents and doctors are able to input medication names and descriptions themselves in child-friendly terms, along with how frequent it needs to be taken. Children will be able to check off the medications they need to take that day, and get one step closer to gaining a reward. 
+MedHeroes motivates young children from ages 6-13 to take their long-term prescriptions on schedule. Parents and children are able to create custom rewards together, encouraging children to take medication on schedule for a set number of days to obtain a reward. Parents and doctors are able to input medication names and descriptions themselves in child-friendly terms, along with how frequent it needs to be taken. Children will be able to check off the medications they need to take that day, and get one step closer to gaining a reward. 
 
-MedHeroes is designed to be super easy to use across user groups, and fun and playful for children. It is designed to be a mobile platform, and 
+MedHeroes is designed to be fun and playful for children, and super easy to use across user groups. It is designed to be used on a parent's phone, with parental supervision. Iimportant features like checking-off medication and editing medication info are password-protected. Pediatricians are also able to input medication info, instructions, or frequency directly to MedHeroes during check-ups.
 
 Features include:
-- Register for user account
+- Register for user account/Login to user account
 - Choose user avatar
-- Input and edit medication name, description, and frequency
+- Input or edit medication name, description, and frequency
 - Check-off medication (password protected)
 - Set reward and goal # of days
-
-## Screenshots ##
-
 
 ## Demo ##
 [Demo here!](https://vimeo.com/359226882)
