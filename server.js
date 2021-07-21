@@ -177,8 +177,8 @@ app.post('/createAvatar', function(req, res, next){
                   });
 });
 
-// Fetches a user's avatar from the database.
-app.get('/getAvatar', function(req, res, next){
+// Fetches a user's avatar and username from the database.
+app.get('/getAvatarUsername', function(req, res, next){
   User.findById(req.session.userId)
   .exec((err, data) => {
     if (err){

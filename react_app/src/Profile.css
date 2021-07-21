@@ -15,9 +15,8 @@ html, body, #app, #app>div, #root {
   width: 100%;
 }
 
-/*USER*/
-.containerProfile .user {
-  /*inherit from App.css*/
+/* AVATAR USER*/
+/* .containerProfile .user {
   margin-top: 5%;
 }
 
@@ -43,7 +42,7 @@ html, body, #app, #app>div, #root {
   box-shadow: none;
   font-size: 22px;
   margin-top: 10%;
-}
+} */
 
 
 /*MEDICATION*/

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './NavBar';
 import Medicine from './Medicine';
+import Avatar from './Avatar';
 
 // foreign imports
 import Button from '@material-ui/core/Button';
@@ -15,6 +16,7 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import moment from "moment-timezone";
 import { BarLoader } from 'react-spinners';
+// import { Avatar } from '@material-ui/core';
 
 // NavBar // imgs
 // import footerHome from "./images/iconhome.png";
@@ -30,12 +32,12 @@ class Home extends Component {
       medicine_array: [],
       reward_array: [],
       image: '',
-      avatar:'',
+      // AVATAR avatar:'',
       open: false,
       medDesc: '',
       Sunday: false,
       completed: null,
-      username:'',
+      // AVATAR username:'',
       medicine_render: false,
       // NavBar
       // scroll: '',
@@ -65,7 +67,7 @@ class Home extends Component {
 
     /* image accessor methods*/
     this.getImage = this.getImage.bind(this);
-    this.getAvatar = this.getAvatar.bind(this);
+    // AVATAR this.getAvatar = this.getAvatar.bind(this);
 
     /* Scrolling, submission, and rerouting */
     // NavBar this.handleScroll = this.handleScroll.bind(this);
@@ -105,18 +107,18 @@ class Home extends Component {
       tennis: require('./images/rewards/tennis.png')
     }
 
-    this.HEADS = {
-      bunny: require('./images/heads/bunny.png'),
-      cat: require('./images/heads/cat.png'),
-      dinosaur: require('./images/heads/dinosaur.png'),
-      dog: require('./images/heads/dog.png'),
-      frog: require('./images/heads/frog.png'),
-      monkey: require('./images/heads/monkey.png'),
-      panda: require('./images/heads/panda.png'),
-      penguin: require('./images/heads/penguin.png'),
-      raccoon: require('./images/heads/raccoon.png'),
-      unicorn: require('./images/heads/unicorn.png'),
-    }
+    // AVATAR this.HEADS = {
+    //   bunny: require('./images/heads/bunny.png'),
+    //   cat: require('./images/heads/cat.png'),
+    //   dinosaur: require('./images/heads/dinosaur.png'),
+    //   dog: require('./images/heads/dog.png'),
+    //   frog: require('./images/heads/frog.png'),
+    //   monkey: require('./images/heads/monkey.png'),
+    //   panda: require('./images/heads/panda.png'),
+    //   penguin: require('./images/heads/penguin.png'),
+    //   raccoon: require('./images/heads/raccoon.png'),
+    //   unicorn: require('./images/heads/unicorn.png'),
+    // }
 
     //this.server = "http://ec2-18-220-220-78.us-east-2.compute.amazonaws.com:5000";
     this.server = "http://localhost:5000";
@@ -169,23 +171,23 @@ class Home extends Component {
       }
     });
 
-    fetch(this.server + "/getAvatar", {
-      mode: 'cors',
-      credentials: 'include',
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
+    // AVATAR fetch(this.server + "/getAvatar", {
+    //   mode: 'cors',
+    //   credentials: 'include',
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Credentials': true,
+    //   }
+    // })
+    // .then(res => res.json())
+    // .then(data => {
 
-      if (typeof data != 'undefined' && data !== null){
-          this.setState({username: data.username, avatar: data.avatar_path});
-      }
-    });
+    //   if (typeof data != 'undefined' && data !== null){
+    //       this.setState({username: data.username, avatar: data.avatar_path});
+    //   }
+    // });
 
 
     fetch(this.server + "/getCompleted", {
@@ -230,10 +232,10 @@ class Home extends Component {
     return this.REWARDS[name];
   }
 
-  /* Accessor for the avatar images. */
-  getAvatar(name) {
-    return this.HEADS[name];
-  }
+  // AVATAR /* Accessor for the avatar images. */
+  // getAvatar(name) {
+  //   return this.HEADS[name];
+  // }
 
   /* DIALOG HANDLERS */
   handleCancelReward() {
@@ -291,11 +293,11 @@ class Home extends Component {
     this.setState({medicine_render: true});
   }
 
-  /* ROUTING METHOD */
-  goToProfile(event) {
-    // go /profile
-    this.props.history.push("/profile");
-  }
+  // navBar /* ROUTING METHOD */
+  // goToProfile(event) {
+  //   // go /profile
+  //   this.props.history.push("/profile");
+  // }
 
   /* Adds medication for a user. Updates medicine list after added. */
   handleSubmit(event){
@@ -348,20 +350,20 @@ class Home extends Component {
 
   /* METHODS USED IN RENDERING */
 
-  /*
-   * Renders user conditionally.
-   * If no avatar, renders an empty circle.
-   * Else, shows their avatar.
-   */
-  renderUser(){
-    if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
-      var thumbnail = this.getAvatar(this.state.avatar);
-      return ( <img src={thumbnail} alt="thumbnail" width="120" height="120"/> );
-    }
-    else{
-      return (<div id = "circle"> </div>);
-    }
-  }
+  // AVATAR /*
+  //  * Renders user conditionally.
+  //  * If no avatar, renders an empty circle.
+  //  * Else, shows their avatar.
+  //  */
+  // renderUser(){
+  //   if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
+  //     var thumbnail = this.getAvatar(this.state.avatar);
+  //     return ( <img src={thumbnail} alt="thumbnail" width="120" height="120"/> );
+  //   }
+  //   else{
+  //     return (<div id = "circle"> </div>);
+  //   }
+  // }
 
   // helper method to render medications
   getMedList(){
@@ -471,7 +473,9 @@ class Home extends Component {
   render() {
 
       // highlights completed dates if they exist.
-      if (this.state.completed === null || this.state.username === ""){
+      // TODO fix this.state.username condition
+      // if (this.state.completed === null || this.state.username === ""){
+      if (this.state.completed === null){
         return (
           <div className = "loading-container">
             <BarLoader sizeUnit={"px"} width ={200} height={8} size={500} color={'#01c13b'} />
@@ -555,12 +559,14 @@ class Home extends Component {
           </DialogActions>
         </Dialog>
 
-        <div className = "user">
+        {/* AVATAR <div className = "user">
           {this.renderUser()}
           <div id ="name">Hello, {this.state.username}!</div>
-        </div>
+        </div> */}
 
-
+        <Avatar 
+          atHome={true}
+        />
         {this.renderMedicine()}
 
         {this.renderReward()}

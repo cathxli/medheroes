@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Profile.css';
 import ChangeMedicine from './ChangeMedicine';
 import NavBar from './NavBar';
+import Avatar from './Avatar';
 
 // foreign imports
 import Button from '@material-ui/core/Button';
@@ -36,8 +37,8 @@ class Profile extends Component {
       medicine: '',
       medDesc: '',
       reward_array: [],
-      username:'',
-      avatar_path: '',
+      // AVATAR username:'',
+      // avatar_path: '',
       // NavBar navColor: ''
     }
 
@@ -57,7 +58,7 @@ class Profile extends Component {
 
     /* image accessor methods */
     this.getImage = this.getImage.bind(this);
-    this.getAvatar = this.getAvatar.bind(this);
+    // AVATAR this.getAvatar = this.getAvatar.bind(this);
 
     /* logout method */
     this.handleLogout = this.handleLogout.bind(this);
@@ -98,18 +99,18 @@ class Profile extends Component {
       tennis: require('./images/rewards/tennis.png')
     }
 
-    this.AVATARS = {
-      bunny: require('./images/avatars/bunny.png'),
-      cat: require('./images/avatars/cat.png'),
-      dinosaur: require('./images/avatars/dinosaur.png'),
-      dog: require('./images/avatars/dog.png'),
-      frog: require('./images/avatars/frog.png'),
-      monkey: require('./images/avatars/monkey.png'),
-      panda: require('./images/avatars/panda.png'),
-      penguin: require('./images/avatars/penguin.png'),
-      raccoon: require('./images/avatars/raccoon.png'),
-      unicorn: require('./images/avatars/unicorn.png'),
-    }
+    // AVATARS this.AVATARS = {
+    //   bunny: require('./images/avatars/bunny.png'),
+    //   cat: require('./images/avatars/cat.png'),
+    //   dinosaur: require('./images/avatars/dinosaur.png'),
+    //   dog: require('./images/avatars/dog.png'),
+    //   frog: require('./images/avatars/frog.png'),
+    //   monkey: require('./images/avatars/monkey.png'),
+    //   panda: require('./images/avatars/panda.png'),
+    //   penguin: require('./images/avatars/penguin.png'),
+    //   raccoon: require('./images/avatars/raccoon.png'),
+    //   unicorn: require('./images/avatars/unicorn.png'),
+    // }
 
       //this.server = "http://ec2-18-220-220-78.us-east-2.compute.amazonaws.com:5000";
       this.server = "http://localhost:5000";
@@ -223,22 +224,22 @@ class Profile extends Component {
       this.setState({allMedicine: data})
     });
 
-    fetch(this.server + "/getAvatar", {
-      mode: 'cors',
-      credentials: 'include',
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (typeof data != 'undefined' && data !== null){
-          this.setState({username: data.username, avatar: data.avatar_path});
-      }
-    });
+    // AVATAR fetch(this.server + "/getAvatar", {
+    //   mode: 'cors',
+    //   credentials: 'include',
+    //   method: 'GET',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Credentials': true,
+    //   }
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //   if (typeof data != 'undefined' && data !== null){
+    //       this.setState({username: data.username, avatar: data.avatar_path});
+    //   }
+    // });
     fetch(this.server + "/getReward", {
       mode: 'cors',
       credentials: 'include',
@@ -302,21 +303,21 @@ class Profile extends Component {
 
   /* RENDER METHODS */
 
-  /*
-   * Renders user conditionally.
-   * If no avatar, renders an empty circle.
-   * Else, shows their avatar.
-   */
-  renderUser(){
-    if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
-      var thumbnail = this.getAvatar(this.state.avatar);
+  // AVATAR /*
+  //  * Renders user conditionally.
+  //  * If no avatar, renders an empty circle.
+  //  * Else, shows their avatar.
+  //  */
+  // renderUser(){
+  //   if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
+  //     var thumbnail = this.getAvatar(this.state.avatar);
 
-      return ( <div className="avatarWrapper"> <img src={thumbnail} alt="thumbnail" width="160" height="160" onClick ={this.goEditAvatar}/> </div>);
-    }
-    else{
-      return (<div id = "circle" onClick ={this.goEditAvatar}> <span>click to edit your avatar!</span></div>);
-    }
-  }
+  //     return ( <div className="avatarWrapper"> <img src={thumbnail} alt="thumbnail" width="160" height="160" onClick ={this.goEditAvatar}/> </div>);
+  //   }
+  //   else{
+  //     return (<div id = "circle" onClick ={this.goEditAvatar}> <span>click to edit your avatar!</span></div>);
+  //   }
+  // }
 
   // helper method to render medications.
   getMedList(){
@@ -531,12 +532,15 @@ class Profile extends Component {
         </Dialog>
 
 
-          <div className = "user">
+        <Avatar 
+          isHome = {false}
+        />
+          {/* AVATAR <div className = "user">
             {this.renderUser()}
             <div id = "name">
               {this.state.username}
             </div>
-          </div>
+          </div> */}
 
           {this.renderAllMedicine()}
 
