@@ -53,7 +53,7 @@ class Profile extends Component {
     /* rerouting methods */
     // navBar this.goHome = this.goHome.bind(this);
     this.goReward = this.goReward.bind(this);
-    this.goAvatar = this.goAvatar.bind(this);
+    this.goEditAvatar = this.goEditAvatar.bind(this);
 
     /* image accessor methods */
     this.getImage = this.getImage.bind(this);
@@ -191,9 +191,9 @@ class Profile extends Component {
   //   this.props.history.push("/home");
   // }
 
-  goAvatar(){
+  goEditAvatar(){
     // go /avatar
-    this.props.history.push("/avatar");
+    this.props.history.push("/edit-avatar");
   }
 
   goReward(){
@@ -311,10 +311,10 @@ class Profile extends Component {
     if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
       var thumbnail = this.getAvatar(this.state.avatar);
 
-      return ( <div className="avatarWrapper"> <img src={thumbnail} alt="thumbnail" width="160" height="160" onClick ={this.goAvatar}/> </div>);
+      return ( <div className="avatarWrapper"> <img src={thumbnail} alt="thumbnail" width="160" height="160" onClick ={this.goEditAvatar}/> </div>);
     }
     else{
-      return (<div id = "circle" onClick ={this.goAvatar}> <span>click to edit your avatar!</span></div>);
+      return (<div id = "circle" onClick ={this.goEditAvatar}> <span>click to edit your avatar!</span></div>);
     }
   }
 

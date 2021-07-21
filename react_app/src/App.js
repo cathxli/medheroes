@@ -6,7 +6,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import Reward from './Reward';
-import Avatar from './Avatar';
+import EditAvatar from './EditAvatar';
 
 class App extends Component {
 
@@ -20,7 +20,7 @@ class App extends Component {
         <Route exact path = "/home" component ={Home} />
         <Route exact path = "/profile" component ={Profile} />
         <Route exact path = "/reward" component ={Reward} />
-        <Route exact path = "/avatar" component = {Avatar}/>
+        <Route exact path = "/edit-avatar" component = {EditAvatar}/>
       </Switch>
 
       </BrowserRouter>

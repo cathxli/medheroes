@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './Avatar.css';
+import './EditAvatar.css';
 
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
-class Avatar extends Component {
+class EditAvatar extends Component {
     constructor(props) {
         super(props);
 
@@ -142,4 +142,4 @@ class Avatar extends Component {
     }
 }
 
-export default Avatar;
+export default EditAvatar;
