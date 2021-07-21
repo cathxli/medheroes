@@ -5,7 +5,7 @@ import Profile from './Profile';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
-import Reward from './Reward';
+import EditReward from './EditReward';
 import EditAvatar from './EditAvatar';
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
         <Route exact path = "/signup" component ={Signup} />
         <Route exact path = "/home" component ={Home} />
         <Route exact path = "/profile" component ={Profile} />
-        <Route exact path = "/reward" component ={Reward} />
+        <Route exact path = "/edit-reward" component ={EditReward} />
         <Route exact path = "/edit-avatar" component = {EditAvatar}/>
       </Switch>
 

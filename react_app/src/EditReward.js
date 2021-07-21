@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './Reward.css';
+import './EditReward.css';
 
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
-class Reward extends Component {
+class EditReward extends Component {
   constructor(props) {
     super(props);
 
@@ -323,4 +323,4 @@ class Reward extends Component {
   }
 }
 
-export default Reward;
+export default EditReward;

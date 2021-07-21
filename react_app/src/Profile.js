@@ -170,7 +170,7 @@ class Profile extends Component {
   }
   goReward(){
     // go /reward
-    this.props.history.push("/reward");
+    this.props.history.push("/edit-reward");
   }
 
   /* COMPONENT DID MOUNT
