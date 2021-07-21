@@ -33,7 +33,7 @@
 
 /* Profile page */
   .containerProfile .avatar {
-    margin-top: 5%;
+    margin-top: 7%;
   }
   
   .containerProfile .avatarWrapper {
@@ -57,5 +57,5 @@
   .containerProfile .avatar #username {
     box-shadow: none;
     font-size: 22px;
-    margin-top: 10%;
+    margin-top: -5%; 
   }

@@ -63,41 +63,6 @@ a {
   padding-bottom: 20%;
 }
 
-
-/* AVATAR USER
-.user {
-  margin-top: 15%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.user #circle {
-  height: 100px;
-  width: 100px;
-  border: 0;
-  background-color: #dbe7ff;
-  border-radius: 50%;
-}
-
-.containerHome .user #circle {
-  height: 80px;
-  width: 80px;
-}
-
-.user #name {
-  font-family: "Mikado-Bold";
-  font-size: 18px;
-  text-decoration: none;
-  color: #5188ff;
-}
-
-.userLink {
-  text-decoration: none;
-} */
-
-
 /*MEDICATION*/
 .med-container {
   width: 85%;

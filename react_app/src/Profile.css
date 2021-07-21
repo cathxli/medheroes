@@ -15,36 +15,6 @@ html, body, #app, #app>div, #root {
   width: 100%;
 }
 
-/* AVATAR USER*/
-/* .containerProfile .user {
-  margin-top: 5%;
-}
-
-.avatarWrapper {
-  height: 150px;
-  width: 150px;
-}
-
-.user #circle {
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  text-align: center;
-}
-
-.user #circle span {
-  margin: 12%;
-  font-size: 13px;
-  color: #2146d1;
-}
-
-.containerProfile .user #name {
-  box-shadow: none;
-  font-size: 22px;
-  margin-top: 10%;
-} */
-
-
 /*MEDICATION*/
 .containerProfile .med-container {
   margin-top: 6%;

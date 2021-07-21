@@ -4,7 +4,6 @@ import NavBar from './NavBar';
 import Medicine from './Medicine';
 import Avatar from './Avatar';
 
-// foreign imports
 import Button from '@material-ui/core/Button';
 import Calendar from 'react-calendar';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,32 +15,20 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import moment from "moment-timezone";
 import { BarLoader } from 'react-spinners';
-// import { Avatar } from '@material-ui/core';
-
-// NavBar // imgs
-// import footerHome from "./images/iconhome.png";
-// import footerProfile from "./images/smile.png"
 
 class Home extends Component {
   constructor(props) {
-
     super(props);
-
     this.state = {
       medicine: '',
       medicine_array: [],
       reward_array: [],
       image: '',
-      // AVATAR avatar:'',
       open: false,
       medDesc: '',
       Sunday: false,
       completed: null,
-      // AVATAR username:'',
       medicine_render: false,
-      // NavBar
-      // scroll: '',
-      // navColor: "",
       showReward: false
     }
 
@@ -64,15 +51,11 @@ class Home extends Component {
     this.onCheck = this.onCheck.bind(this);
     this.onChange = this.onChange.bind(this);
 
-
     /* image accessor methods*/
     this.getImage = this.getImage.bind(this);
-    // AVATAR this.getAvatar = this.getAvatar.bind(this);
 
     /* Scrolling, submission, and rerouting */
-    // NavBar this.handleScroll = this.handleScroll.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // NavBar this.goToProfile = this.goToProfile.bind(this);
 
     this.REWARDS = {
       icecream: require('./images/rewards/icecream.png'),
@@ -107,19 +90,6 @@ class Home extends Component {
       tennis: require('./images/rewards/tennis.png')
     }
 
-    // AVATAR this.HEADS = {
-    //   bunny: require('./images/heads/bunny.png'),
-    //   cat: require('./images/heads/cat.png'),
-    //   dinosaur: require('./images/heads/dinosaur.png'),
-    //   dog: require('./images/heads/dog.png'),
-    //   frog: require('./images/heads/frog.png'),
-    //   monkey: require('./images/heads/monkey.png'),
-    //   panda: require('./images/heads/panda.png'),
-    //   penguin: require('./images/heads/penguin.png'),
-    //   raccoon: require('./images/heads/raccoon.png'),
-    //   unicorn: require('./images/heads/unicorn.png'),
-    // }
-
     //this.server = "http://ec2-18-220-220-78.us-east-2.compute.amazonaws.com:5000";
     this.server = "http://localhost:5000";
   }
@@ -132,7 +102,6 @@ class Home extends Component {
     var today = new Date()
     today.setHours(0, 0, 0, 0)
     today = moment(today).tz("America/New_York").format("YYYY/MM/DD");
-    // NavBar this.setState({navColor: "#1871ff"});
 
     fetch(this.server + "/getMedicine?date=" + today, {
       mode: 'cors',
@@ -170,25 +139,6 @@ class Home extends Component {
           this.setState({reward_array: data[0], image: data[0].img_path })
       }
     });
-
-    // AVATAR fetch(this.server + "/getAvatar", {
-    //   mode: 'cors',
-    //   credentials: 'include',
-    //   method: 'GET',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Credentials': true,
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-
-    //   if (typeof data != 'undefined' && data !== null){
-    //       this.setState({username: data.username, avatar: data.avatar_path});
-    //   }
-    // });
-
 
     fetch(this.server + "/getCompleted", {
       mode: 'cors',
@@ -232,11 +182,6 @@ class Home extends Component {
     return this.REWARDS[name];
   }
 
-  // AVATAR /* Accessor for the avatar images. */
-  // getAvatar(name) {
-  //   return this.HEADS[name];
-  // }
-
   /* DIALOG HANDLERS */
   handleCancelReward() {
     this.setState({ showReward: false });
@@ -264,7 +209,7 @@ class Home extends Component {
     this.setState({showReward: true});
   }
 
-  /* IUpdate calendar days. */
+  /* Update calendar days. */
   rerenderParentCallbackDates(){
     fetch(this.server + "/getCompleted", {
       mode: 'cors',
@@ -293,12 +238,6 @@ class Home extends Component {
     this.setState({medicine_render: true});
   }
 
-  // navBar /* ROUTING METHOD */
-  // goToProfile(event) {
-  //   // go /profile
-  //   this.props.history.push("/profile");
-  // }
-
   /* Adds medication for a user. Updates medicine list after added. */
   handleSubmit(event){
     event.preventDefault()
@@ -321,7 +260,6 @@ class Home extends Component {
           })
           .then(res => res.text())
           .then(data => {
-
             fetch(this.server + "/getMedicine?date=" + today, {
               mode: 'cors',
               credentials: 'include',
@@ -338,7 +276,6 @@ class Home extends Component {
               for (var x in data){
                 thing.push(data[x].medicine);
               }
-
               this.setState({medicine_array: thing})
             });
           }).catch(err => {
@@ -349,21 +286,6 @@ class Home extends Component {
 
 
   /* METHODS USED IN RENDERING */
-
-  // AVATAR /*
-  //  * Renders user conditionally.
-  //  * If no avatar, renders an empty circle.
-  //  * Else, shows their avatar.
-  //  */
-  // renderUser(){
-  //   if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
-  //     var thumbnail = this.getAvatar(this.state.avatar);
-  //     return ( <img src={thumbnail} alt="thumbnail" width="120" height="120"/> );
-  //   }
-  //   else{
-  //     return (<div id = "circle"> </div>);
-  //   }
-  // }
 
   // helper method to render medications
   getMedList(){
@@ -390,7 +312,6 @@ class Home extends Component {
               My Medication
             </p>
           </div>
-
             <p id="notif"> You don't have any medications for today.  </p>
         </div>
         </div>
@@ -399,14 +320,12 @@ class Home extends Component {
     else {
       return (
           <div className="med-container">
-
             <div className = "deargod-med">
               <div className="deargod-top" id="medicationNoneTop">
                 <p className="deargodTopTitle" id="med">
                 My Medication
                 </p>
               </div>
-
               <div className="med-displayed-innner">
                 {this.getMedList()}
               </div>
@@ -438,7 +357,6 @@ class Home extends Component {
     }
     else {
       var thumbnail = this.getImage(this.state.reward_array.img_path);
-
       return (
         <div className="rewards-container">
 
@@ -460,18 +378,10 @@ class Home extends Component {
           </div>
         </div>
       );
-
     }
   }
 
-  // NavBar
-  // /* Method for scrolling. */
-  // handleScroll() {
-  //   this.setState({scroll: "none"});
-  // }
-
   render() {
-
       // highlights completed dates if they exist.
       // TODO fix this.state.username condition
       // if (this.state.completed === null || this.state.username === ""){
@@ -559,11 +469,6 @@ class Home extends Component {
           </DialogActions>
         </Dialog>
 
-        {/* AVATAR <div className = "user">
-          {this.renderUser()}
-          <div id ="name">Hello, {this.state.username}!</div>
-        </div> */}
-
         <Avatar 
           atHome={true}
         />
@@ -587,20 +492,6 @@ class Home extends Component {
         <NavBar 
             atHome={true}
         />
-
-        {/* NavBar
-        
-        <div className="footer" style={{boxShadow: this.state.scroll}} onScroll={this.handleScroll}>
-          <div className="toHome">
-            <img src={footerHome} alt="footer-home" style={{backgroundColor: this.state.navColor}}/>
-            <p style={{color: this.state.navColor}}>home</p>
-          </div>
-          <div className="toProfile" onClick = {this.goToProfile}>
-            <img src={footerProfile} alt="footer-profile"/>
-            <p>me</p>
-          </div>
-        </div> */}
-
       </div>
         );
     }
