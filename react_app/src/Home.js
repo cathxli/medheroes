@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import NavBar from './NavBar';
+import Medicine from './Medicine';
 
 // foreign imports
 import Button from '@material-ui/core/Button';
-import Medicine from './Medicine';
 import Calendar from 'react-calendar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -15,9 +16,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import moment from "moment-timezone";
 import { BarLoader } from 'react-spinners';
 
-// imgs
-import footerHome from "./images/iconhome.png";
-import footerProfile from "./images/smile.png"
+// NavBar // imgs
+// import footerHome from "./images/iconhome.png";
+// import footerProfile from "./images/smile.png"
 
 class Home extends Component {
   constructor(props) {
@@ -36,8 +37,9 @@ class Home extends Component {
       completed: null,
       username:'',
       medicine_render: false,
-      scroll: '',
-      navColor: "",
+      // NavBar
+      // scroll: '',
+      // navColor: "",
       showReward: false
     }
 
@@ -66,9 +68,9 @@ class Home extends Component {
     this.getAvatar = this.getAvatar.bind(this);
 
     /* Scrolling, submission, and rerouting */
-    this.handleScroll = this.handleScroll.bind(this);
+    // NavBar this.handleScroll = this.handleScroll.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.goToProfile = this.goToProfile.bind(this);
+    // NavBar this.goToProfile = this.goToProfile.bind(this);
 
     this.REWARDS = {
       icecream: require('./images/rewards/icecream.png'),
@@ -128,7 +130,7 @@ class Home extends Component {
     var today = new Date()
     today.setHours(0, 0, 0, 0)
     today = moment(today).tz("America/New_York").format("YYYY/MM/DD");
-    this.setState({navColor: "#1871ff"});
+    // NavBar this.setState({navColor: "#1871ff"});
 
     fetch(this.server + "/getMedicine?date=" + today, {
       mode: 'cors',
@@ -460,10 +462,11 @@ class Home extends Component {
     }
   }
 
-  /* Method for scrolling. */
-  handleScroll() {
-    this.setState({scroll: "none"});
-  }
+  // NavBar
+  // /* Method for scrolling. */
+  // handleScroll() {
+  //   this.setState({scroll: "none"});
+  // }
 
   render() {
 
@@ -575,6 +578,12 @@ class Home extends Component {
             locale="en"
         />
 
+        <NavBar 
+            atHome={true}
+        />
+
+        {/* NavBar
+        
         <div className="footer" style={{boxShadow: this.state.scroll}} onScroll={this.handleScroll}>
           <div className="toHome">
             <img src={footerHome} alt="footer-home" style={{backgroundColor: this.state.navColor}}/>
@@ -584,7 +593,7 @@ class Home extends Component {
             <img src={footerProfile} alt="footer-profile"/>
             <p>me</p>
           </div>
-        </div>
+        </div> */}
 
       </div>
         );

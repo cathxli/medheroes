@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './Profile.css';
+import ChangeMedicine from './ChangeMedicine';
+import NavBar from './NavBar';
 
 // foreign imports
 import Button from '@material-ui/core/Button';
-import ChangeMedicine from './ChangeMedicine';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -14,9 +15,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-// imgs
-import footerHome from "./images/web-page-home.png";
-import footerProfile from "./images/iconsmile.png";
+// NavBar imgs
+// import footerHome from "./images/web-page-home.png";
+// import footerProfile from "./images/iconsmile.png";
 
 class Profile extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Profile extends Component {
       reward_array: [],
       username:'',
       avatar_path: '',
-      navColor: ''
+      // NavBar navColor: ''
     }
 
     /* dialog methods */
@@ -50,7 +51,7 @@ class Profile extends Component {
     this.onChange = this.onChange.bind(this);
 
     /* rerouting methods */
-    this.goHome = this.goHome.bind(this);
+    // navBar this.goHome = this.goHome.bind(this);
     this.goReward = this.goReward.bind(this);
     this.goAvatar = this.goAvatar.bind(this);
 
@@ -185,10 +186,10 @@ class Profile extends Component {
    }
 
   /* ROUTES */
-  goHome(){
-    // go /home
-    this.props.history.push("/home");
-  }
+  // navBar goHome(){
+  //   // go /home
+  //   this.props.history.push("/home");
+  // }
 
   goAvatar(){
     // go /avatar
@@ -205,7 +206,7 @@ class Profile extends Component {
    * Gets the medicines, avatars, and rewards for the user.
    */
   componentDidMount(){
-    this.setState({navColor: "#1871ff"});
+    // navBar this.setState({navColor: "#1871ff"});
 
     fetch(this.server + "/getProfileMedicine", {
       mode: 'cors',
@@ -545,16 +546,9 @@ class Profile extends Component {
               <input type="submit" value="Logout" id ="submitButton" onClick ={this.handleLogout}/>
           </div>
 
-          <div className="footer" style={{boxShadow: this.state.scroll}} onScroll={this.handleScroll}>
-            <div className="toHome" onClick = {this.goHome}>
-              <img src={footerHome} alt="footer-home"></img>
-              <p >home</p>
-            </div>
-            <div className="toProfile">
-              <img src={footerProfile} alt="footer-profile" style={{backgroundColor: this.state.navColor}}/>
-              <p style={{color: this.state.navColor}}>me</p>
-            </div>
-          </div>
+          <NavBar 
+            atHome={false}
+          />
 
       </div>
     );

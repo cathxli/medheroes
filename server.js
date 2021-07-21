@@ -161,6 +161,11 @@ var Dates = mongoose.model('Dates', DatesSchema);
 
 //////////////////////// POST AND GET REQUESTS BELOW ///////////////////////
 
+app.get('', function (req, res, next) {
+  console.log("hello");
+  res.render('index', {});
+});
+
 app.post('/createAvatar', function(req, res, next){
   User.updateOne( { _id: req.session.userId },
                   {avatar_path: req.body.img_path}, function(err, response){
