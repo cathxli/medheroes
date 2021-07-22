@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Profile.css';
-import ChangeMedicine from './ChangeMedicine';
+import EditMedicine from './EditMedicine';
 import NavBar from './components/NavBar';
 import Avatar from './components/Avatar';
 import Reward from './components/Reward';
@@ -165,7 +165,7 @@ class Profile extends Component {
   // helper method to render medications.
   getMedList(){
     return (this.state.allMedicine.map((data, index) => {
-      return (<ChangeMedicine key= {index} med={data.medicine} desc={data.description}
+      return (<EditMedicine key= {index} med={data.medicine} desc={data.description}
               sunday={data.sunday} monday={data.monday} tuesday={data.tuesday}
               wednesday={data.wednesday} thursday={data.thursday} friday={data.friday}
               saturday={data.saturday}

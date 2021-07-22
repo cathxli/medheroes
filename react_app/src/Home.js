@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
-import Medicine from './Medicine';
+import Medicine from './components/Medicine';
 import Avatar from './components/Avatar';
 import Reward from './components/Reward';
 
@@ -210,7 +210,7 @@ class Home extends Component {
             <div className = "deargod-med">
               <div className="deargod-top" id="medicationNoneTop">
                 <p className="deargodTopTitle" id="med">
-                My Medication
+                  My Medication
                 </p>
               </div>
               <div className="med-displayed-innner">
@@ -266,32 +266,37 @@ class Home extends Component {
               </DialogActions>
             </Dialog>
 
-        <Avatar 
-          atHome={true}
-        />
-        {this.renderMedicine()}
-
-        <Reward 
-          rewards_reset = {this.state.rewards_reset}
-          endRewardReset = {this.endRewardReset}
-          showEditReward = {false}
-        />
-
-        <div className="calendar-container">
-          <div className="deargod-top" id="medicationNoneTop">
-            <p className="deargodTopTitle" id="med">
-              My History
-            </p>
-          </div>
-        </div>
-
-        <Calendar
-            tileClassName={tileClassName}
-            locale="en"
-        />
-        <NavBar 
+          <Avatar 
             atHome={true}
-        />
+          />
+
+          {this.renderMedicine()}
+
+          <Reward 
+            rewards_reset = {this.state.rewards_reset}
+            endRewardReset = {this.endRewardReset}
+            showEditReward = {false}
+          />
+
+          {/* <History 
+
+          /> */}
+          <div className="calendar-container">
+            <div className="deargod-top" id="medicationNoneTop">
+              <p className="deargodTopTitle" id="med">
+                My History
+              </p>
+            </div>
+          </div>
+
+          <Calendar
+              tileClassName={tileClassName}
+              locale="en"
+          />
+
+          <NavBar 
+              atHome={true}
+          />
       </div>
         );
     }

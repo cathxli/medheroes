@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ChangeMedicine.css';
+import './EditMedicine.css';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,7 +12,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
-class ChangeMedicine extends Component {
+class EditMedicine extends Component {
     constructor (props){
         super(props)
 
@@ -299,15 +299,15 @@ class ChangeMedicine extends Component {
         <div className = "medicine-top-bar">
 
           <div className="med-title-wrapper">
-            <img className="icon-med" src={require("./images/Pill.png")}
+            <img className="icon-med" src={require("./images/edit_medicine_icons/medicine_icon.png")}
               alt="pill"/>
             <p className="medicine-title"> {this.props.med}</p>
           </div>
 
           <div className="med-edit-wrapper">
-            <img className="icon-edit"  src={require("./images/editicon.png")} onClick={this.handleClickOpenEdit}
+            <img className="icon-edit"  src={require("./images/edit_medicine_icons/edit_icon.png")} onClick={this.handleClickOpenEdit}
             alt="edit med icon"/>
-            <img className="icon-delete" src={require("./images/trashicon.png")} onClick={this.handleClickOpenDelete}
+            <img className="icon-delete" src={require("./images/edit_medicine_icons/delete_icon.png")} onClick={this.handleClickOpenDelete}
             alt="delete med icon"/>
           </div>
 
@@ -322,4 +322,4 @@ class ChangeMedicine extends Component {
   }
 }
 
-export default ChangeMedicine;
+export default EditMedicine;

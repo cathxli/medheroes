@@ -63,21 +63,20 @@ class Reward extends Component {
     renderReward(){
         if (this.state.reward_array.length === 0 && !this.props.showEditReward){ // Home page
         return (
-            <div className="rewards-container">
+            //<div className="rewards-container">
                 <div className = "deargod-rewards" id="rewardsNone">
                 <div className="deargod-top" id="medicationNoneTop">
                 <p className="deargodTopTitle" id="med">
-                    Current Reward
+                    My Reward
                 </p>
                 </div>
                     <p id="notif"> You don't have any ongoing rewards.</p>
                 </div>
-            </div>
+            //</div>
             );
         }
         else if (this.state.reward_array.length === 0 && this.props.showEditReward) { // Profile page
             return (
-                <div className = "rewards-container">
                   <div className = "deargod-rewards" id="rewardsNone">
                     <div className="deargod-top">
                       <p className="deargodTopTitle">
@@ -89,14 +88,11 @@ class Reward extends Component {
                         + Create a new reward
                       </Button>
                   </div>
-                </div>
               );
         }
         else {
             var thumbnail = this.getRewardImage(this.state.reward_array.img_path);
             return (
-                <div className="rewards-container">
-
                 <div className = "deargod-rewards">
                     <div className="deargod-top">
                     <p className="deargodTopTitle">
@@ -112,7 +108,6 @@ class Reward extends Component {
                         </p>
                     </div>
                     </div>
-                </div>
                 </div>
             );
         }
@@ -166,7 +161,7 @@ class Reward extends Component {
             this.getReward();
         }
         return(
-            <div>
+            <div className="rewards-container">
                 {this.renderReward()}
             </div> 
         );

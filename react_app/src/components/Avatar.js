@@ -107,7 +107,6 @@ class Avatar extends Component {
             //   todo: should handle parsing here or in server?
             if (typeof data != 'undefined' && data !== null){
                 this.setState({username: data.username, avatar: data.avatar_path});
-                console.log(this.state.username, this.state.avatar);
             }
           });
     }
