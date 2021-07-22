@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Medicine from './components/Medicine';
 import Avatar from './components/Avatar';
 import Reward from './components/Reward';
+import Loading from './components/Loading';
 
 import Button from '@material-ui/core/Button';
 import Calendar from 'react-calendar';
@@ -12,7 +13,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from "moment-timezone";
-import { BarLoader } from 'react-spinners';
+// import { BarLoader } from 'react-spinners';
 
 class Home extends Component {
   constructor(props) {
@@ -226,12 +227,10 @@ class Home extends Component {
       // highlights completed dates if they exist.
       // TODO fix this.state.username condition
       // if (this.state.completed === null || this.state.username === ""){
-      if (this.state.completed === null){
+      if (this.state.completed === null){ // todo change to timeout like in Profile.js (or windows.animate for both)
         return (
-          <div className = "loading-container">
-            <BarLoader sizeUnit={"px"} width ={200} height={8} size={500} color={'#01c13b'} />
-            <div className="loading-text">Loading... </div>
-          </div>);
+          <Loading />
+          );
       }
       else{
         const tileClassName = ({ date, view }) => {

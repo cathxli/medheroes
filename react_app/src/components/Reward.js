@@ -51,7 +51,6 @@ class Reward extends Component {
     }
 
     goReward(){
-        // go /reward
         this.props.history.push("/edit-reward");
       }
 
@@ -61,36 +60,34 @@ class Reward extends Component {
     * Else, shows the reward associated with the user.
     */
     renderReward(){
-        if (this.state.reward_array.length === 0 && !this.props.showEditReward){ // Home page
+        if (this.state.reward_array.length === 0 && !this.props.showEditReward){ // Home page no reward
         return (
-            //<div className="rewards-container">
                 <div className = "deargod-rewards" id="rewardsNone">
-                <div className="deargod-top" id="medicationNoneTop">
-                <p className="deargodTopTitle" id="med">
-                    My Reward
-                </p>
-                </div>
+                    <div className="deargod-top" id="medicationNoneTop">
+                        <p className="deargodTopTitle" id="med">
+                            My Reward
+                        </p>
+                    </div>
                     <p id="notif"> You don't have any ongoing rewards.</p>
                 </div>
-            //</div>
             );
         }
-        else if (this.state.reward_array.length === 0 && this.props.showEditReward) { // Profile page
+        else if (this.state.reward_array.length === 0 && this.props.showEditReward) { // Profile page no reward, create button
             return (
-                  <div className = "deargod-rewards" id="rewardsNone">
+                <div className = "deargod-rewards" id="rewardsNone">
                     <div className="deargod-top">
-                      <p className="deargodTopTitle">
-                        My Current Reward
-                      </p>
+                        <p className="deargodTopTitle">
+                            My Reward
+                        </p>
                     </div>
-                      <p id="notif"> You don't have any ongoing rewards.</p>
-                      <Button id = "editbutton" variant="outlined" onClick = {this.goReward}>
+                    <p id="notif"> You don't have any ongoing rewards.</p>
+                    <Button id = "editbutton" variant="outlined" onClick = {this.goReward}>
                         + Create a new reward
-                      </Button>
-                  </div>
+                    </Button>
+                </div>
               );
         }
-        else {
+        else { // Home page reward exists
             var thumbnail = this.getRewardImage(this.state.reward_array.img_path);
             return (
                 <div className = "deargod-rewards">

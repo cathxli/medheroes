@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Avatar from './components/Avatar';
 import Reward from './components/Reward';
 import LogoutButton from './components/LogoutButton';
+import Loading from './components/Loading';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -34,6 +35,7 @@ class Profile extends Component {
       medicine: '',
       medDesc: '',
       reward_reset: false,   // not needed here; but a state needed in Home.js for Reward component
+      loading: true,
     }
 
     /* dialog methods */
@@ -125,6 +127,12 @@ class Profile extends Component {
    * Gets the medicines, avatars, and rewards for the user.
    */
   componentDidMount(){
+    // timer for loading animation. todo: stop loading after component has finished drawing, likely using windows.animate.
+    setTimeout(function() { // Start the timer
+      this.setState({loading: false}) // After 0.6 second, set loading to true
+    }.bind(this), 600)
+
+    // get data from server
     fetch(this.server + "/getProfileMedicine", {
       mode: 'cors',
       credentials: 'include',
@@ -218,6 +226,10 @@ class Profile extends Component {
   }
 
   render() {
+    if (this.state.loading) { // if profile page is still loading, show loading page
+      return (<Loading />);
+    }
+
     return (
       <div className = "containerProfile">
         <Dialog
