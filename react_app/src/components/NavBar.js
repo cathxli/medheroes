@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './NavBar.css';
-import navBarHome from "./images/navbar/iconhome.png";
-import navBarProfile from "./images/navbar/iconsmile.png"
+import navBarHome from "../images/navbar/iconhome.png";
+import navBarProfile from "../images/navbar/iconsmile.png"
 
 class NavBar extends Component {
     constructor(props) {

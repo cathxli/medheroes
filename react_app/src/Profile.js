@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Profile.css';
 import ChangeMedicine from './ChangeMedicine';
-import NavBar from './NavBar';
-import Avatar from './Avatar';
-import Reward from './Reward';
-import LogoutButton from './LogoutButton';
+import NavBar from './components/NavBar';
+import Avatar from './components/Avatar';
+import Reward from './components/Reward';
+import LogoutButton from './components/LogoutButton';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from './NavBar';
+import NavBar from './components/NavBar';
 import Medicine from './Medicine';
-import Avatar from './Avatar';
-import Reward from './Reward';
+import Avatar from './components/Avatar';
+import Reward from './components/Reward';
 
 import Button from '@material-ui/core/Button';
 import Calendar from 'react-calendar';
