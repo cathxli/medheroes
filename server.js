@@ -162,7 +162,6 @@ var Dates = mongoose.model('Dates', DatesSchema);
 //////////////////////// POST AND GET REQUESTS BELOW ///////////////////////
 
 app.get('', function (req, res, next) {
-  console.log("hello");
   res.render('index', {});
 });
 
@@ -218,7 +217,7 @@ app.get('/getReward', function(req, res, next){
   });
 });
 
-// Increments a user's reward count. Also determines if they reached the reward.
+// Increments a user's reward count. Also determines if they reached the reward (removes reward).
 app.post('/incrementReward', function(req, res, next){
     Reward.find({ sessionid: req.session.userId })
         .exec((err, data ) => {
@@ -286,6 +285,7 @@ app.post('/addDate', function(req, res, next){
         .exec((err, today_data) => {
             var num_today = today_data.length
 
+            // TODO REWARDS what does this do -- if today is the day that the medicine should be taken ??
             if (num_checked >= num_today){
               // insert the moment into the dates schema.
               var completed = moment().tz("America/New_York").format("YYYY/MM/DD");

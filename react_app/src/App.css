@@ -21,6 +21,16 @@ html, body, #app, #app>div, #root {
   height: 100%;
 }
 
+
+.hidden{
+  display: none;
+}
+
+.show {
+  color: #f47a61;
+  margin-left: 22px;
+}
+
 Dialog {
   font-family: "Mikado-Regular" !important;
 }
@@ -130,7 +140,7 @@ a {
 
 
 /*REWARDS*/
-.rewards-home-inner {
+/* .rewards-home-inner {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -176,7 +186,7 @@ a {
 
 .containerHome .deargod-rewards img {
   padding: 6%;
-}
+} */
 
 .rewards-popup {
   color: #353638;

@@ -144,14 +144,15 @@ class Medicine extends Component {
                     },
                       body: JSON.stringify({
                         medicine: this.props.med,
-                          date: today,
+                        date: today,
                       })
                     })
                     .then(res => res.text())
                     .then(data => {
-                      if (data === "equal"){
+                      if (data === "equal"){ // I think: if today is the day that the medicine should be taken
                         this.props.rerenderParentCallbackDates();
 
+                        // increments how many days fulfilled for reward, also removes reward from db if reward is fulfilled
                         fetch(this.server + "/incrementReward", {
                             mode: 'cors',
                             credentials: 'include',
@@ -164,8 +165,8 @@ class Medicine extends Component {
                             })
                             .then(res => res.text())
                             .then(data => {
-                              if (data === "goal"){
-                                this.props.rerenderParentCallbackReward();
+                              if (data === "goal"){ // completed reward
+                                this.props.rerenderParentCallbackReward(); // go show congrats page!
                               }
                             });
                       }

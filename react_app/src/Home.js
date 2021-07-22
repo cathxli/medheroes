@@ -3,16 +3,14 @@ import './App.css';
 import NavBar from './NavBar';
 import Medicine from './Medicine';
 import Avatar from './Avatar';
+import Reward from './Reward';
 
 import Button from '@material-ui/core/Button';
 import Calendar from 'react-calendar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 import moment from "moment-timezone";
 import { BarLoader } from 'react-spinners';
 
@@ -22,73 +20,31 @@ class Home extends Component {
     this.state = {
       medicine: '',
       medicine_array: [],
-      reward_array: [],
-      image: '',
       open: false,
-      medDesc: '',
-      Sunday: false,
+
+      rewards_reset: false,
+
       completed: null,
       medicine_render: false,
       showReward: false
     }
 
     /* dialog methods */
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleOK = this.handleOK.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleOKReward = this.handleOKReward.bind(this);
     this.handleCancelReward = this.handleCancelReward.bind(this);
 
     /* render and rerendering methods */
-    this.renderReward = this.renderReward.bind(this);
     this.renderMedicine = this.renderMedicine.bind(this);
     this.getMedList = this.getMedList.bind(this);
     this.rerenderParentCallbackReward = this.rerenderParentCallbackReward.bind(this);
     this.rerenderParentCallbackMedicine = this.rerenderParentCallbackMedicine.bind(this);
     this.rerenderParentCallbackDates = this.rerenderParentCallbackDates.bind(this);
+    this.endRewardReset = this.endRewardReset.bind(this);
 
     /* state changing methods */
     this.onCheck = this.onCheck.bind(this);
     this.onChange = this.onChange.bind(this);
-
-    /* image accessor methods*/
-    this.getImage = this.getImage.bind(this);
-
-    /* Scrolling, submission, and rerouting */
-    this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.REWARDS = {
-      icecream: require('./images/rewards/icecream.png'),
-      baking: require('./images/rewards/baking.png'),
-      ball: require('./images/rewards/ball.png'),
-      beach: require('./images/rewards/beach.png'),
-      bike: require('./images/rewards/bike.png'),
-      book: require('./images/rewards/book.png'),
-      bowling: require('./images/rewards/bowling.png'),
-      card: require('./images/rewards/card.png'),
-      carnival: require('./images/rewards/carnival.png'),
-      chess: require('./images/rewards/chess.png'),
-      clothes: require('./images/rewards/clothes.png'),
-      ferris: require('./images/rewards/ferris.png'),
-      fire: require('./images/rewards/fire.png'),
-      game: require('./images/rewards/game.png'),
-      gift: require('./images/rewards/gift.png'),
-      hamburger: require('./images/rewards/hamburger.png'),
-      hotdog: require('./images/rewards/hotdog.png'),
-      jewelry: require('./images/rewards/jewelry.png'),
-      kart: require('./images/rewards/kart.png'),
-      makeup: require('./images/rewards/makeup.png'),
-      movies: require('./images/rewards/movies.png'),
-      paint: require('./images/rewards/paint.png'),
-      picnic: require('./images/rewards/picnic.png'),
-      pizza: require('./images/rewards/pizza.png'),
-      puzzle: require('./images/rewards/puzzle.png'),
-      shopping: require('./images/rewards/shopping.png'),
-      sneakers: require('./images/rewards/sneakers.png'),
-      swimming: require('./images/rewards/swimming.png'),
-      teddy: require('./images/rewards/teddy.png'),
-      tennis: require('./images/rewards/tennis.png')
-    }
 
     //this.server = "http://ec2-18-220-220-78.us-east-2.compute.amazonaws.com:5000";
     this.server = "http://localhost:5000";
@@ -123,23 +79,6 @@ class Home extends Component {
       this.setState({medicine_array: thing})
     });
 
-    fetch(this.server + "/getReward", {
-      mode: 'cors',
-      credentials: 'include',
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (typeof data[0] != 'undefined'){
-          this.setState({reward_array: data[0], image: data[0].img_path })
-      }
-    });
-
     fetch(this.server + "/getCompleted", {
       mode: 'cors',
       credentials: 'include',
@@ -171,16 +110,9 @@ class Home extends Component {
 
    onCheck(e) {
      this.setState({
-         [e.target.name]: e.target.checked
+         [e.target.name]: e.target.checked // true or false boolean
      });
    }
-
-
-  /* IMAGE ACCESSORS */
-  /* Accessor for the reward images. */
-  getImage(name) {
-    return this.REWARDS[name];
-  }
 
   /* DIALOG HANDLERS */
   handleCancelReward() {
@@ -188,7 +120,7 @@ class Home extends Component {
   };
 
   handleOKReward() {
-    this.setState({ showReward: false, reward_array:[] });
+    this.setState({ showReward: false}); // close congrats popup
   };
 
   handleCancel() {
@@ -199,14 +131,12 @@ class Home extends Component {
     this.setState({ open: true });
   };
 
-  handleOK(){
-    this.setState({ open: false });
-  };
-
   /* RERENDER METHODS */
   /* Show reward dialog. */
   rerenderParentCallbackReward(){
     this.setState({showReward: true});
+    // ask rewards component to pull the new data (no rewards) from db and reset itself
+    this.setState({rewards_reset: true});
   }
 
   /* Update calendar days. */
@@ -238,55 +168,12 @@ class Home extends Component {
     this.setState({medicine_render: true});
   }
 
-  /* Adds medication for a user. Updates medicine list after added. */
-  handleSubmit(event){
-    event.preventDefault()
-    var today = new Date()
-    today.setHours(0, 0, 0, 0)
-    today = moment(today).tz("America/New_York").format("YYYY/MM/DD");
-
-      fetch(this.server + "/addMedicine", {
-          mode: 'cors',
-          credentials: 'include',
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Credentials': true,
-          },
-            body: JSON.stringify({
-              medicine: this.state.medicine
-            })
-          })
-          .then(res => res.text())
-          .then(data => {
-            fetch(this.server + "/getMedicine?date=" + today, {
-              mode: 'cors',
-              credentials: 'include',
-              method: 'GET',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': true,
-              },
-            })
-            .then(res => res.json())
-            .then(data => {
-              var thing = []
-              for (var x in data){
-                thing.push(data[x].medicine);
-              }
-              this.setState({medicine_array: thing})
-            });
-          }).catch(err => {
-            // handle err
-            console.log(err)
-          })
+  // set rewards_reset back to false so it will not infinitely get from database and infintely rerender 
+  endRewardReset() {
+    this.setState({rewards_reset: false});
   }
 
-
   /* METHODS USED IN RENDERING */
-
   // helper method to render medications
   getMedList(){
     return (this.state.medicine_array.map((data, index) => {
@@ -335,52 +222,6 @@ class Home extends Component {
     }
   }
 
-  /*
-   * Renders reward conditionally.
-   * If no reward associated with the user, renders a message.
-   * Else, shows the reward associated with the user.
-   */
-  renderReward(){
-    if (this.state.reward_array.length === 0 ){
-      return (
-          <div className="rewards-container">
-            <div className = "deargod-rewards" id="rewardsNone">
-            <div className="deargod-top" id="medicationNoneTop">
-              <p className="deargodTopTitle" id="med">
-                Current Reward
-              </p>
-            </div>
-                <p id="notif"> You don't have any ongoing rewards.</p>
-            </div>
-          </div>
-      );
-    }
-    else {
-      var thumbnail = this.getImage(this.state.reward_array.img_path);
-      return (
-        <div className="rewards-container">
-
-          <div className = "deargod-rewards">
-            <div className="deargod-top">
-              <p className="deargodTopTitle">
-                My Reward
-              </p>
-            </div>
-
-            <div className = "rewards-home-inner">
-              <img src={thumbnail} alt="thumbnail of reward" width="60" height="60"/>
-              <div className = "rewards-home-info">
-                <p>You have <span>{this.state.reward_array.goalCount - this.state.reward_array.actualCount} </span> day(s) left until
-                  you reach your reward for <span> {this.state.reward_array.img_path}</span>!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }
-
   render() {
       // highlights completed dates if they exist.
       // TODO fix this.state.username condition
@@ -402,8 +243,9 @@ class Home extends Component {
          return null;
        };
       return (
-          <div className = "containerHome">
-            <Dialog
+        <div className = "containerHome">
+          {/* REWARD CONGRATS POPUP */}
+          <Dialog
               open={this.state.showReward}
               onClose={this.handleCancelReward}
               aria-labelledby="alert-dialog-title"
@@ -412,9 +254,9 @@ class Home extends Component {
                 <DialogContent>
                     <div className="rewards-popup-wrapper">
                       <div className="rewards-popup">You've reached your goal and can now receive your reward of
-                        <span className="bold-this"> {this.state.reward_array.img_path}</span>!
+                        {/* TODO REWARD <span className="bold-this"> {this.state.reward_array.img_path}</span>! */}
                       </div>
-                      <div className="rewards-popup-img"><img src={this.getImage(this.state.reward_array.img_path)} alt="thumbnail of reward"/></div>
+                      {/* TODO REWARD <div className="rewards-popup-img"><img src={this.getImage(this.state.reward_array.img_path)} alt="thumbnail of reward"/></div> */}
                     </div>
                 </DialogContent>
               <DialogActions>
@@ -424,57 +266,15 @@ class Home extends Component {
               </DialogActions>
             </Dialog>
 
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleCancel}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Please enter a password."}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              To check off your medication a password is required.
-            </DialogContentText>
-            <TextField
-                autoFocus
-                margin="dense"
-                label="Medication"
-                name="medicine"
-                value={this.state.medicine} onChange={this.onChange}
-                fullWidth
-              />
-              <TextField
-                  autoFocus
-                  margin="dense"
-                  label="Description"
-                  name="medDesc"
-                  value={this.state.medDesc} onChange={this.onChange}
-                  fullWidth
-                />
-                <Checkbox
-                  checked={this.state.Sunday}
-                  onChange={this.onCheck}
-
-                  name="Sunday"
-                />
-                <p> Sunday </p>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleCancel} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleOK} color="primary" autoFocus>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-
         <Avatar 
           atHome={true}
         />
         {this.renderMedicine()}
 
-        {this.renderReward()}
+        <Reward 
+          rewards_reset = {this.state.rewards_reset}
+          endRewardReset = {this.endRewardReset}
+        />
 
         <div className="calendar-container">
           <div className="deargod-top" id="medicationNoneTop">
@@ -488,7 +288,6 @@ class Home extends Component {
             tileClassName={tileClassName}
             locale="en"
         />
-
         <NavBar 
             atHome={true}
         />
