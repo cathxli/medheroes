@@ -4,6 +4,7 @@ import ChangeMedicine from './ChangeMedicine';
 import NavBar from './NavBar';
 import Avatar from './Avatar';
 import Reward from './Reward';
+import LogoutButton from './LogoutButton';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -43,12 +44,6 @@ class Profile extends Component {
     /* change methods */
     this.onCheck = this.onCheck.bind(this);
     this.onChange = this.onChange.bind(this);
-
-    /* rerouting methods */
-    this.goEditAvatar = this.goEditAvatar.bind(this);
-
-    /* logout method */
-    this.handleLogout = this.handleLogout.bind(this);
 
     /* rerender method */
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
@@ -125,12 +120,6 @@ class Profile extends Component {
          });
    }
 
-  /* ROUTES */
-  goEditAvatar(){
-    // go /avatar
-    this.props.history.push("/edit-avatar");
-  }
-
   /* COMPONENT DID MOUNT
    *
    * Gets the medicines, avatars, and rewards for the user.
@@ -150,29 +139,6 @@ class Profile extends Component {
     .then(data => {
       this.setState({allMedicine: data})
     });
-  }
-
-  /*
-   * Handles when a user logs out.
-   * Redirects to the home page once logged out.
-   */
-  handleLogout() {
-      fetch(this.server + "/logout", {
-          mode: 'cors',
-          credentials: 'include',
-          method: 'GET',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Credentials': true,
-          }
-      })
-          .then(res => res.text())
-          .then(data => {
-              if (data === "redirect"){
-                  this.props.history.push("/")
-              }
-          });
   }
 
   /*
@@ -358,7 +324,6 @@ class Profile extends Component {
           </div>
         </Dialog>
 
-
         <Avatar 
           isHome = {false}
         />
@@ -371,9 +336,7 @@ class Profile extends Component {
           showEditReward = {true}   
         />
 
-        <div className="logout">
-            <input type="submit" value="Logout" id ="submitButton" onClick ={this.handleLogout}/>
-        </div>
+        <LogoutButton />
 
         <NavBar 
           atHome={false}

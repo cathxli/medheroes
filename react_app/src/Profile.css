@@ -42,46 +42,6 @@ html, body, #app, #app>div, #root {
   border-bottom: 1px solid #e0e0e0;
 }
 
-
-/*REWARDS*/
-
-.containerProfile .rewards-home-inner img {
-  padding: 6%;
-}
-
-.deargod-rewards button {
-  border: none;
-  border-radius: 16px;
-  background-color: #7edd97;
-  margin-bottom: 11px;
-  font-weight: bold;
-  color: #1c3f22;
-}
-
-.rewards-home-inner span {
-  font-weight: bold;
-}
-
-.rewards-home-inner {
-  padding: 2%;
-}
-
-/*override for rewards top*/
-.deargod-rewards .deargod-top {
-  background-color: #fcc84e;
-}
-
-.reward {
-  border: 1px solid black;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-family: 'Karla';
-  font-size: 20px;
-  width: 80%;
-}
-
 .inner {
   display: flex;
   flex-direction: row;
@@ -120,27 +80,4 @@ html, body, #app, #app>div, #root {
   text-align: center;
   border: 1px solid black;
   font-size: 20px;
-}
-
-/*LOGOUT*/
-.logout {
-  margin-top: 5%;
-}
-
-.logout input {
-  font-family: 'MikadoBold_DEMO';
-  border: 0 none;
-  cursor:pointer;
-  background-color: #ff6868;
-  color: #3f1c1c;
-  border-radius: 16px;
-  font-size: 22px;
-  margin-top:10px;
-  height: 45px;
-  width: 130px;
-}
-
-.logout input:focus {
-  outline: 0;
-  box-shadow: 0 0 6px 4px #b5caff;
 }

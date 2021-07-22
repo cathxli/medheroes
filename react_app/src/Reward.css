@@ -45,3 +45,41 @@
   .containerHome .deargod-rewards img {
     padding: 6%;
   }
+
+  /* Profile */
+.containerProfile .rewards-home-inner img {
+    padding: 6%;
+  }
+  
+  .deargod-rewards button {
+    border: none;
+    border-radius: 16px;
+    background-color: #7edd97;
+    margin-bottom: 11px;
+    font-weight: bold;
+    color: #1c3f22;
+  }
+  
+  .rewards-home-inner span {
+    font-weight: bold;
+  }
+  
+  .rewards-home-inner {
+    padding: 2%;
+  }
+  
+  /*override for rewards top*/
+  .deargod-rewards .deargod-top {
+    background-color: #fcc84e;
+  }
+  
+  .reward {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Karla';
+    font-size: 20px;
+    width: 80%;
+  }

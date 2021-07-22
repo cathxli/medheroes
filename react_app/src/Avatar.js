@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Avatar.css'
+import { withRouter } from 'react-router-dom';
 
 class Avatar extends Component {
     constructor(props) {
@@ -26,19 +27,32 @@ class Avatar extends Component {
 
         this.getAvatar = this.getAvatar.bind(this);
         this.getUsername = this.getUsername.bind(this);
+        this.goEditAvatar = this.goEditAvatar.bind(this);
     }
 
+    goEditAvatar(){
+        this.props.history.push("/edit-avatar");
+      }
+
     //  * Renders user conditionally.
-    //    * If no avatar, renders an empty circle.
-    //    * Else, shows their avatar.
     //    */
-    renderAvatar(){
-        if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined'){
-        var thumbnail = this.getAvatar(this.state.avatar);
+    renderAvatar(atHome){
+        if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined' && atHome) { // if at home, don't allow edit avatar
+            var thumbnail = this.getAvatar(this.state.avatar);
             return ( <img src={thumbnail} alt="thumbnail" width="120" height="120"/> );
         }
-        else{
-            return (<div id = "circle"> </div>);
+        else if (this.state.avatar !== "" && typeof this.state.avatar !== 'undefined' && !atHome) { // if at profile, allow edit avatar
+            var thumbnail = this.getAvatar(this.state.avatar);
+            return(<div className="avatarWrapper"> <img src={thumbnail} alt="thumbnail" width="160" height="160" onClick ={this.goEditAvatar}/> </div> );
+        }
+        else { // no Avatar
+            if (atHome) {
+                return (<div id = "circle"> </div>);
+            }
+            else {
+                return (<div id = "circle" onClick ={this.goAvatar}> <span>click to edit your avatar!</span></div>);
+            }
+            
         }
     }
     // todo: maybe change this to "location" for extensibility
@@ -83,11 +97,11 @@ class Avatar extends Component {
     render() {
         return(
             <div className = "avatar">
-                {this.renderAvatar()}
+                {this.renderAvatar(this.props.atHome)}
                 {this.renderText(this.props.atHome)}
             </div>
         );
     }
 }
 
-export default Avatar;
+export default withRouter(Avatar);

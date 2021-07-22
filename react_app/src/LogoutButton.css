@@ -1,0 +1,22 @@
+/*LOGOUT*/
+.logout {
+    margin-top: 5%;
+  }
+  
+  .logout input {
+    font-family: 'MikadoBold_DEMO';
+    border: 0 none;
+    cursor:pointer;
+    background-color: #ff6868;
+    color: #3f1c1c;
+    border-radius: 16px;
+    font-size: 22px;
+    margin-top:10px;
+    height: 45px;
+    width: 130px;
+  }
+  
+  .logout input:focus {
+    outline: 0;
+    box-shadow: 0 0 6px 4px #b5caff;
+  }
