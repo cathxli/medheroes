@@ -3,6 +3,7 @@ import './Profile.css';
 import ChangeMedicine from './ChangeMedicine';
 import NavBar from './NavBar';
 import Avatar from './Avatar';
+import Reward from './Reward';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -31,7 +32,7 @@ class Profile extends Component {
       saturday: false,
       medicine: '',
       medDesc: '',
-      reward_array: [],
+      reward_reset: false,   // not needed here; but a state needed in Home.js for Reward component
     }
 
     /* dialog methods */
@@ -44,63 +45,24 @@ class Profile extends Component {
     this.onChange = this.onChange.bind(this);
 
     /* rerouting methods */
-    this.goReward = this.goReward.bind(this);
     this.goEditAvatar = this.goEditAvatar.bind(this);
-
-    /* image accessor methods */
-    this.getImage = this.getImage.bind(this);
 
     /* logout method */
     this.handleLogout = this.handleLogout.bind(this);
 
     /* rerender method */
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
-
-    this.REWARDS = {
-      icecream: require('./images/rewards/icecream.png'),
-      baking: require('./images/rewards/baking.png'),
-      ball: require('./images/rewards/ball.png'),
-      beach: require('./images/rewards/beach.png'),
-      bike: require('./images/rewards/bike.png'),
-      book: require('./images/rewards/book.png'),
-      bowling: require('./images/rewards/bowling.png'),
-      card: require('./images/rewards/card.png'),
-      carnival: require('./images/rewards/carnival.png'),
-      chess: require('./images/rewards/chess.png'),
-      clothes: require('./images/rewards/clothes.png'),
-      ferris: require('./images/rewards/ferris.png'),
-      fire: require('./images/rewards/fire.png'),
-      game: require('./images/rewards/game.png'),
-      gift: require('./images/rewards/gift.png'),
-      hamburger: require('./images/rewards/hamburger.png'),
-      hotdog: require('./images/rewards/hotdog.png'),
-      jewelry: require('./images/rewards/jewelry.png'),
-      kart: require('./images/rewards/kart.png'),
-      makeup: require('./images/rewards/makeup.png'),
-      movies: require('./images/rewards/movies.png'),
-      paint: require('./images/rewards/paint.png'),
-      picnic: require('./images/rewards/picnic.png'),
-      pizza: require('./images/rewards/pizza.png'),
-      puzzle: require('./images/rewards/puzzle.png'),
-      shopping: require('./images/rewards/shopping.png'),
-      sneakers: require('./images/rewards/sneakers.png'),
-      swimming: require('./images/rewards/swimming.png'),
-      teddy: require('./images/rewards/teddy.png'),
-      tennis: require('./images/rewards/tennis.png')
-    }
+    // not needed here; but callback function passed as props to Reward component for Home.js
+    this.endRewardReset = this.endRewardReset.bind(this);
 
     //this.server = "http://ec2-18-220-220-78.us-east-2.compute.amazonaws.com:5000";
     this.server = "http://localhost:5000";
   }
 
-  /* Accessor for the reward images. */
-  getImage(name) {
-    return this.REWARDS[name];
-  }
-
-  /* Accessor for the avatar images. */
-  getAvatar(name) {
-    return this.AVATARS[name];
+  // not needed here; but callback function passed as props to Reward component for Home.js
+  // set rewards_reset back to false so it will not infinitely get from database and infintely rerender 
+  endRewardReset() {
+    this.setState({rewards_reset: false});
   }
 
   /* Rerender profile medicine when medication is edited, deleted, or added. */
@@ -168,10 +130,6 @@ class Profile extends Component {
     // go /avatar
     this.props.history.push("/edit-avatar");
   }
-  goReward(){
-    // go /reward
-    this.props.history.push("/edit-reward");
-  }
 
   /* COMPONENT DID MOUNT
    *
@@ -191,23 +149,6 @@ class Profile extends Component {
     .then(res => res.json())
     .then(data => {
       this.setState({allMedicine: data})
-    });
-
-    fetch(this.server + "/getReward", {
-      mode: 'cors',
-      credentials: 'include',
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (typeof data[0] != 'undefined'){
-          this.setState( {reward_array: data[0]} )
-      }
     });
   }
 
@@ -304,54 +245,6 @@ class Profile extends Component {
             <Button id = "editbutton" variant="outlined" onClick ={this.handleClickOpen}>
               + Add medications
             </Button>
-          </div>
-        </div>
-      );
-    }
-  }
-
-  /*
-   * Renders reward conditionally.
-   * If no reward associated with the user, displays a message.
-   * Else, shows the reward that the user has.
-   */
-  renderReward(){
-    if (this.state.reward_array.length === 0 ){
-      return (
-        <div className = "rewards-container">
-          <div className = "deargod-rewards" id="rewardsNone">
-            <div className="deargod-top">
-              <p className="deargodTopTitle">
-                My Current Reward
-              </p>
-            </div>
-              <p id="notif"> You don't have any ongoing rewards.</p>
-              <Button id = "editbutton" variant="outlined" onClick = {this.goReward}>
-                + Create a new reward
-              </Button>
-          </div>
-        </div>
-      );
-    }
-    else {
-      var thumbnail = this.getImage(this.state.reward_array.img_path);
-      return (
-        <div className="rewards-container">
-          <div className = "deargod-rewards">
-            <div className="deargod-top">
-              <p className="deargodTopTitle">
-                My Current Reward
-              </p>
-            </div>
-            <div className = "rewards-home-inner">
-              <img src={thumbnail} alt="icecweam" width="60" height="60"/>
-              <div className = "rewards-home-info">
-                <p>Description: <span>{this.state.reward_array.desc}</span></p>
-                <p>You have <span>{this.state.reward_array.goalCount - this.state.reward_array.actualCount} </span> day(s) left until
-                  you reach your reward for <span> {this.state.reward_array.img_path}</span>!
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       );
@@ -472,7 +365,11 @@ class Profile extends Component {
 
         {this.renderAllMedicine()}
 
-        {this.renderReward()}
+        <Reward 
+          rewards_reset = {this.state.reward_reset}
+          endRewardReset = {this.endRewardReset}
+          showEditReward = {true}   
+        />
 
         <div className="logout">
             <input type="submit" value="Logout" id ="submitButton" onClick ={this.handleLogout}/>

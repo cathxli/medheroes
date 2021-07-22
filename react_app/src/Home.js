@@ -274,6 +274,7 @@ class Home extends Component {
         <Reward 
           rewards_reset = {this.state.rewards_reset}
           endRewardReset = {this.endRewardReset}
+          showEditReward = {false}
         />
 
         <div className="calendar-container">

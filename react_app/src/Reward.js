@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Reward.css';
+import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 
 class Reward extends Component {
     constructor(props) {
@@ -45,7 +47,13 @@ class Reward extends Component {
         this.server = "http://localhost:5000";
         this.renderReward = this.renderReward.bind(this);
         this.getRewardImage = this.getRewardImage.bind(this);
+        this.goReward = this.goReward.bind(this);
     }
+
+    goReward(){
+        // go /reward
+        this.props.history.push("/edit-reward");
+      }
 
     /*
     * Renders reward conditionally.
@@ -53,7 +61,7 @@ class Reward extends Component {
     * Else, shows the reward associated with the user.
     */
     renderReward(){
-        if (this.state.reward_array.length === 0 ){
+        if (this.state.reward_array.length === 0 && !this.props.showEditReward){ // Home page
         return (
             <div className="rewards-container">
                 <div className = "deargod-rewards" id="rewardsNone">
@@ -66,6 +74,23 @@ class Reward extends Component {
                 </div>
             </div>
             );
+        }
+        else if (this.state.reward_array.length === 0 && this.props.showEditReward) { // Profile page
+            return (
+                <div className = "rewards-container">
+                  <div className = "deargod-rewards" id="rewardsNone">
+                    <div className="deargod-top">
+                      <p className="deargodTopTitle">
+                        My Current Reward
+                      </p>
+                    </div>
+                      <p id="notif"> You don't have any ongoing rewards.</p>
+                      <Button id = "editbutton" variant="outlined" onClick = {this.goReward}>
+                        + Create a new reward
+                      </Button>
+                  </div>
+                </div>
+              );
         }
         else {
             var thumbnail = this.getRewardImage(this.state.reward_array.img_path);
@@ -148,4 +173,4 @@ class Reward extends Component {
     }
 }
 
-export default Reward;
+export default withRouter(Reward);
