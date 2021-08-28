@@ -2,9 +2,9 @@
   "scripts": {
     "start": "node server_app/server.js",
     "heroku-postbuild": "cd client_app && npm install && npm run build"
- },
-
+  },
   "dependencies": {
-    "concurrently": "^6.2.1"
+    "concurrently": "^6.2.1",
+    "moment-timezone": "^0.5.33"
   }
 }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "moment-timezone": "^0.5.33",
     "react": "^16.8.4",
     "react-calendar": "^2.18.1",
     "react-dom": "^16.8.4",
