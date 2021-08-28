@@ -162,7 +162,12 @@ var Dates = mongoose.model('Dates', DatesSchema);
 //////////////////////// POST AND GET REQUESTS BELOW ///////////////////////
 
 app.get('', function (req, res, next) {
-  res.render('index', {});
+  // res.render('index', {});
+  res.status(err.status || 500);
+  res.json({
+  message: err.message,
+  error: err
+});
 });
 
 app.post('/createAvatar', function(req, res, next){
