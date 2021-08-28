@@ -63,7 +63,7 @@ class Avatar extends Component {
                 return (<div id = "circle"> </div>);
             }
             else {
-                return (<div id = "circle" onClick ={this.goAvatar}> <span>click to edit your avatar!</span></div>);
+                return (<div id = "circle" onClick ={this.goEditAvatar}> <span>click to edit your avatar!</span></div>);
             }
             
         }

@@ -35,6 +35,7 @@ class Profile extends Component {
       medicine: '',
       medDesc: '',
       reward_reset: false,   // not needed here; but a state needed in Home.js for Reward component
+      reward_img_path: '', // not needed here; but a state needed in Home.js for Reward component
       loading: true,
     }
 
@@ -51,6 +52,7 @@ class Profile extends Component {
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
     // not needed here; but callback function passed as props to Reward component for Home.js
     this.endRewardReset = this.endRewardReset.bind(this);
+    this.passRewardPath = this.passRewardPath.bind(this);
 
     //this.server = "http://ec2-18-220-220-78.us-east-2.compute.amazonaws.com:5000";
     this.server = "http://localhost:5000";
@@ -62,6 +64,12 @@ class Profile extends Component {
     this.setState({rewards_reset: false});
   }
 
+  // not needed here, see above
+  // callback to pass reward name to congrats popup
+  passRewardPath(img) {
+    this.setState({reward_img_path: img})
+  }
+  
   /* Rerender profile medicine when medication is edited, deleted, or added. */
   rerenderParentCallback(){
     this.getProfileMedicine();
@@ -130,7 +138,7 @@ class Profile extends Component {
     // timer for loading animation. todo: stop loading after component has finished drawing, likely using windows.animate.
     setTimeout(function() { // Start the timer
       this.setState({loading: false}) // After 0.6 second, set loading to true
-    }.bind(this), 600)
+    }.bind(this), 500)
 
     // get data from server
     fetch(this.server + "/getProfileMedicine", {
@@ -345,7 +353,8 @@ class Profile extends Component {
         <Reward 
           rewards_reset = {this.state.reward_reset}
           endRewardReset = {this.endRewardReset}
-          showEditReward = {true}   
+          showEditReward = {true} 
+          passRewardPath = {this.passRewardPath}  
         />
 
         <LogoutButton />

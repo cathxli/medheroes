@@ -13,7 +13,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from "moment-timezone";
-// import { BarLoader } from 'react-spinners';
 
 class Home extends Component {
   constructor(props) {
@@ -24,11 +23,45 @@ class Home extends Component {
       open: false,
 
       rewards_reset: false,
+      reward_img_path: "",
 
       completed: null,
       medicine_render: false,
       showReward: false
     }
+
+    this.REWARDS = {
+      icecream: require('./images/rewards/icecream.png'),
+      baking: require('./images/rewards/baking.png'),
+      ball: require('./images/rewards/ball.png'),
+      beach: require('./images/rewards/beach.png'),
+      bike: require('./images/rewards/bike.png'),
+      book: require('./images/rewards/book.png'),
+      bowling: require('./images/rewards/bowling.png'),
+      card: require('./images/rewards/card.png'),
+      carnival: require('./images/rewards/carnival.png'),
+      chess: require('./images/rewards/chess.png'),
+      clothes: require('./images/rewards/clothes.png'),
+      ferris: require('./images/rewards/ferris.png'),
+      fire: require('./images/rewards/fire.png'),
+      game: require('./images/rewards/game.png'),
+      gift: require('./images/rewards/gift.png'),
+      hamburger: require('./images/rewards/hamburger.png'),
+      hotdog: require('./images/rewards/hotdog.png'),
+      jewelry: require('./images/rewards/jewelry.png'),
+      kart: require('./images/rewards/kart.png'),
+      makeup: require('./images/rewards/makeup.png'),
+      movies: require('./images/rewards/movies.png'),
+      paint: require('./images/rewards/paint.png'),
+      picnic: require('./images/rewards/picnic.png'),
+      pizza: require('./images/rewards/pizza.png'),
+      puzzle: require('./images/rewards/puzzle.png'),
+      shopping: require('./images/rewards/shopping.png'),
+      sneakers: require('./images/rewards/sneakers.png'),
+      swimming: require('./images/rewards/swimming.png'),
+      teddy: require('./images/rewards/teddy.png'),
+      tennis: require('./images/rewards/tennis.png')
+  }
 
     /* dialog methods */
     this.handleClickOpen = this.handleClickOpen.bind(this);
@@ -42,6 +75,9 @@ class Home extends Component {
     this.rerenderParentCallbackMedicine = this.rerenderParentCallbackMedicine.bind(this);
     this.rerenderParentCallbackDates = this.rerenderParentCallbackDates.bind(this);
     this.endRewardReset = this.endRewardReset.bind(this);
+    this.passRewardPath = this.passRewardPath.bind(this);
+
+    this.getRewardImage = this.getRewardImage.bind(this);
 
     /* state changing methods */
     this.onCheck = this.onCheck.bind(this);
@@ -174,6 +210,16 @@ class Home extends Component {
     this.setState({rewards_reset: false});
   }
 
+  // callback to pass reward name to congrats popup
+  passRewardPath(img) {
+    this.setState({reward_img_path: img})
+  }
+
+  /* Accessor for the reward images. */
+    getRewardImage(name) {
+      return this.REWARDS[name];
+  }
+
   /* METHODS USED IN RENDERING */
   // helper method to render medications
   getMedList(){
@@ -253,9 +299,11 @@ class Home extends Component {
                 <DialogContent>
                     <div className="rewards-popup-wrapper">
                       <div className="rewards-popup">You've reached your goal and can now receive your reward of
-                        {/* TODO REWARD <span className="bold-this"> {this.state.reward_array.img_path}</span>! */}
+                        <span className="bold-this"> {this.state.reward_img_path}</span>!
                       </div>
-                      {/* TODO REWARD <div className="rewards-popup-img"><img src={this.getImage(this.state.reward_array.img_path)} alt="thumbnail of reward"/></div> */}
+                      <div className="rewards-popup-img">
+                        <img src={this.getRewardImage(this.state.reward_img_path)} alt="thumbnail of reward"/>
+                      </div>
                     </div>
                 </DialogContent>
               <DialogActions>
@@ -275,6 +323,7 @@ class Home extends Component {
             rewards_reset = {this.state.rewards_reset}
             endRewardReset = {this.endRewardReset}
             showEditReward = {false}
+            passRewardPath = {this.passRewardPath}
           />
 
           {/* <History 

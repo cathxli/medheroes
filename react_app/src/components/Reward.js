@@ -131,7 +131,7 @@ class Reward extends Component {
           .then(data => {
             if (typeof data[0] != 'undefined'){ // if there is a reward stored
                 this.setState({reward_array: data[0], reward_image: data[0].img_path })
-                console.log("hello h")
+                this.props.passRewardPath(this.state.reward_image);
             } else {
                 // there is no reward 
                 // make sure reward_array is empty. 
