@@ -161,7 +161,7 @@ var Dates = mongoose.model('Dates', DatesSchema);
 
 //////////////////////// POST AND GET REQUESTS BELOW ///////////////////////
 
-app.get('', function (req, res, next) {
+app.get('', function (err, req, res, next) {
   // res.render('index', {});
   res.status(err.status || 500);
   res.json({
