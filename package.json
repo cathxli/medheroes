@@ -1,22 +1,26 @@
 {
-  "name": "webapps2019",
+  "name": "medheroes",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+  },
+  "engines": {
+    "node": "10.16.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minnakt/webapps2019.git"
+    "url": "git+https://github.com/cathxli/medheroes"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/minnakt/webapps2019/issues"
+    "url": "https://github.com/cathxli/medheroesissues"
   },
-  "homepage": "https://github.com/minnakt/webapps2019#readme",
+  "homepage": "https://github.com/cathxli/medheroes#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -32,4 +36,5 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {}
+  
 }

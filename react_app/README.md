@@ -49,10 +49,12 @@ Here are comments on what each file in react_app generally handles:
 - <b>Signup.js:</b> handles the Signup page (creates new user, privacy policy, form input verification and popups)
 - <b>Home.js:</b> handles the Home page (shows profile pic, username, list of medication, current reward, check-off popup, and reward success popup)
 - <b>Profile.js:</b> handles the Profile page (displays profile pic, username, list of medication, current reward)
-- <b>Medicine.js:</b> handles medication check-off (in the Home page)
 - <b>Avatar.js:</b> "Avatar Selection" page (lets users pick their avatar)
-- <b>ChangeMedicine.js:</b> allows users to edit or delete their medication
 - <b>Reward.js:</b> handles the "Reward Selection" page (allows users to select their reward and name it)
+
+- <b>Medicine.js:</b> handles medication check-off (in the Home page)
+- <b>ChangeMedicine.js:</b> allows users to edit or delete their medication
+
 - <b>index.js:</b> React setup (do not edit)
 - <b>CSS files:</b> styling
 

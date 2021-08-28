@@ -21,24 +21,19 @@ html, body, #app, #app>div, #root {
   height: 100%;
 }
 
+
+.hidden{
+  display: none;
+}
+
+.show {
+  color: #f47a61;
+  margin-left: 22px;
+}
+
 Dialog {
   font-family: "Mikado-Regular" !important;
 }
-
-.loading-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.loading-text {
-  font-family: 'Mikado-Bold';
-  margin: 10px;
-  font-size: 30px;
-}
-
 
 input[type="submit"] {
   -webkit-appearance: none;
@@ -62,41 +57,6 @@ a {
   background-color: #f9fbff;
   padding-bottom: 20%;
 }
-
-
-/*USER*/
-.user {
-  margin-top: 15%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.user #circle {
-  height: 100px;
-  width: 100px;
-  border: 0;
-  background-color: #dbe7ff;
-  border-radius: 50%;
-}
-
-.containerHome .user #circle {
-  height: 80px;
-  width: 80px;
-}
-
-.user #name {
-  font-family: "Mikado-Bold";
-  font-size: 18px;
-  text-decoration: none;
-  color: #5188ff;
-}
-
-.userLink {
-  text-decoration: none;
-}
-
 
 /*MEDICATION*/
 .med-container {
@@ -161,56 +121,6 @@ a {
 
 .med-container .pointer {
   background-color: #4a6ae0;
-}
-
-
-/*REWARDS*/
-.rewards-home-inner {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-}
-
-.rewards-home-info {
-  margin-right: 7%;
-}
-
-.rewards-home-info span{
-  font-weight: bold;
-}
-
-.rewards-container {
-  width: 85%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 6%;
-}
-
-.deargod-rewards {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  border-radius: 10px;
-  margin: 0;
-  background-color: white;
-  font-size: 15px;
-  box-shadow: 0 0 6px lightgray;
-}
-
-.deargod-rewards p {
-  color: #703d00;
-}
-
-.rewards-container .pointer {
-  background-color: #FFCC33;
-}
-
-.containerHome .deargod-rewards img {
-  padding: 6%;
 }
 
 .rewards-popup {
@@ -393,54 +303,4 @@ a {
 .popup-button-wrapper {
   background-color: whitesmoke;
   box-shadow: 0 -2px 4px 1px #e5e5e5 !important;
-}
-
-/*FOOTER*/
-.footer {
-  z-index: 10;
-  width: 100%;
-  height: 7%;
-  background-color: white;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 -2px 6px 1px #e5e5e5;
-}
-
-.footer p {
-  text-align: center;
-  font-size: 11px;
-  margin: 0;
-  padding: 0;
-}
-
-.toHome {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.toProfile {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer img {
-  width: 18px;
-  height: 18px;
 }

@@ -1,0 +1,13 @@
+.loading-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .loading-text {
+    font-family: 'Mikado-Bold';
+    margin: 10px;
+    font-size: 30px;
+  }

@@ -1,0 +1,61 @@
+/* Home page and default */
+.avatar {
+    margin-top: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .avatar #circle {
+    height: 100px;
+    width: 100px;
+    border: 0;
+    background-color: #dbe7ff;
+    border-radius: 50%;
+  }
+  
+  .containerHome .avatar #circle {
+    height: 80px;
+    width: 80px;
+  }
+  
+  .avatar #username {
+    font-family: "Mikado-Bold";
+    font-size: 18px;
+    text-decoration: none;
+    color: #5188ff;
+  }
+  
+  .avatarLink {
+    text-decoration: none;
+  }
+
+/* Profile page */
+  .containerProfile .avatar {
+    margin-top: 7%;
+  }
+  
+  .containerProfile .avatarWrapper {
+    height: 150px;
+    width: 150px;
+  }
+  
+  .containerProfile .avatar #circle {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    text-align: center;
+  }
+  
+  .containerProfile .avatar #circle span {
+    margin: 12%;
+    font-size: 13px;
+    color: #2146d1;
+  }
+  
+  .containerProfile .avatar #username {
+    box-shadow: none;
+    font-size: 22px;
+    margin-top: 12%; 
+  }
