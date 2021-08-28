@@ -62,8 +62,8 @@ app.get('/express_backend', (req, res) => {
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
-app.listen(5000, function(){
-    console.log('- Server listening on port 5000');
+app.listen(port, function(){
+    console.log('Server listening on port ', port);
 });
 
 //////////////////////// DEFINE SCHEMAS ///////////////////////
