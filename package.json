@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "prestart": "npm start /app",
+    "prestart": "cd app && npm start",
     "start": "node server_app/server.js",
     "heroku-postbuild": "cd server_app && npm install && cd .. && cd app && npm install && npm run build"
   },
